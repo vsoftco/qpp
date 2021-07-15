@@ -45,7 +45,7 @@ int main() {
     std::iota(ancilla.begin(), ancilla.end(), nq_c);
 
     std::cout << ">> QPE on nq_c = " << nq_c
-              << " counting qubits, nq_a = " << nq_a << " ancilla qubits\n\n";
+              << " counting qubits, nq_a = " << nq_a << " ancilla qubits\n";
 
     std::cout << ">> The sequence of applied gates is:\n";
     for (idx i = 0; i < counting_qubits.size(); ++i) {

@@ -19,6 +19,13 @@ include(../cmake/qpp_dependencies.cmake)
 if (${CMAKE_CXX_COMPILER_ID} MATCHES "Clang" OR ${CMAKE_CXX_COMPILER_ID}
         STREQUAL "GNU")
     add_compile_options("-pedantic" "-Wall" "-Wextra" "-Weffc++")
+    if (${SANITIZE})
+        if (NOT (${CMAKE_CXX_COMPILER_ID} MATCHES "AppleClang"))
+            list(APPEND SANITIZE_OPTIONS -fsanitize=undefined)
+            add_compile_options("${SANITIZE_OPTIONS}")
+            set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} ${SANITIZE_OPTIONS}")
+        endif ()
+    endif ()
 endif ()
 
 #### Source file(s) to be compiled, modify as needed

@@ -20,18 +20,18 @@ int main() {
     // why we discard the first two qubits in the next line
     qc.discard({0, 1});
 
-    std::cout << ">> BEGIN CIRCUIT\n";
-    // display the circuit; use qc.to_JSON() for JSON output
-    std::cout << qc << '\n';
-    std::cout << ">> END CIRCUIT\n\n";
+    // display the quantum circuit and its corresponding resources
+    // use qc.to_JSON() for JSON output
+    std::cout << qc << "\n\n" << qc.get_resources() << "\n\n";
 
     QEngine q_engine{qc}; // create an engine out of a quantum circuit
-    q_engine.execute();   // execute the circuit
-    std::cout << ">> BEGIN ENGINE STATISTICS\n";
-    // display the measurement statistics; use q_engine.to_JSON() for JSON
-    // output
+
+    // execute the quantum circuit
+    q_engine.execute();
+
+    // display the measurement statistics
+    // use q_engine.to_JSON() for JSON output
     std::cout << q_engine << '\n';
-    std::cout << ">> END ENGINE STATISTICS\n\n";
 
     // displays the final output state
     std::cout << ">> Final state:\n";
